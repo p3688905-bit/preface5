@@ -1,0 +1,934 @@
+<html lang="zh-TW"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>蘭亭集序 · 太閣立志風 (深度對話版)</title>
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-tc@5/index.css" rel="stylesheet"/>
+<style>
+:root {
+--bg: #0d0d05;
+--panel: #f4f1ea;
+--border: #4a3427;
+--ink: #1a1a1a;
+--gold: #a67c00;
+--red: #8b0000;
+--jade: #436650;
+--silk: rgba(255,255,255,0.03);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+font-family: 'Noto Serif TC', 'STSong', 'SimSun', 'KaiTi', '標楷體', serif;
+background: #0d0d05;
+background-image:
+radial-gradient(ellipse at 30% 30%, #1e1a10 0%, transparent 60%),
+radial-gradient(ellipse at 70% 70%, #12110a 0%, transparent 60%);
+min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; user-select:none;
+overflow: hidden;
+color: var(--ink);
+}
+.paper-grain {
+position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+pointer-events: none; opacity: 0.05;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+z-index: 10;
+}
+.cover-screen {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: #0f0c05;
+background-image:
+radial-gradient(ellipse at 50% 30%, #2a2215 0%, transparent 60%),
+radial-gradient(circle at 20% 80%, #1a160d 0%, transparent 50%);
+z-index: 9999; display: flex; justify-content: center; align-items: center; cursor: pointer;
+flex-direction: column; overflow: hidden;
+}
+.scroll-body {
+width: 85%; max-width: 700px;
+background: linear-gradient(180deg, #e0d8c0 0%, #f4f1ea 8%, #f4f1ea 92%, #e0d8c0 100%);
+border: 1px solid #c4a878; border-radius: 2px; padding: 60px 40px; position: relative;
+box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+text-align: center; color: var(--ink);
+animation: fadeInCover 2s ease;
+}
+@keyframes fadeInCover {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes blinkText {
+0%, 100% { opacity: 1; }
+50% { opacity: 0.35; }
+}
+.scroll-body::before, .scroll-body::after {
+content: ''; position: absolute; left: -25px; right: -25px; height: 20px;
+background: linear-gradient(180deg, #5a3d2b, #8b5e3c 40%, #4a3427 60%, #5a3d2b);
+border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+.scroll-body::before { top: -10px; }
+.scroll-body::after { bottom: -10px; }
+.seal {
+display: inline-block; width: 45px; height: 45px; border: 2px solid var(--red); color: var(--red);
+line-height: 40px; text-align: center; font-size: 0.75em; border-radius: 2px;
+transform: rotate(-8deg); margin: 0 8px; font-weight: bold;
+font-family: 'SimSun', serif;
+box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+animation: sealDrop 1.5s ease-out;
+}
+@keyframes sealDrop {
+from { opacity: 0; transform: rotate(-8deg) translateY(-30px); }
+to { opacity: 1; transform: rotate(-8deg) translateY(0); }
+}
+.cover-title {
+font-size: 4.8em; letter-spacing: 0.1em; color: var(--ink);
+text-shadow: 1px 1px 0 rgba(180,140,80,0.2);
+margin: 15px 0; font-weight: bold; font-family: 'KaiTi', '標楷體', serif;
+display: inline-block; white-space: nowrap;
+}
+.cover-subtitle {
+font-size: 1.1em; letter-spacing: 0.3em; color: #5a3d2b;
+margin: 15px 0 25px; border-top: 1px solid #d4c0a0; border-bottom: 1px solid #d4c0a0;
+padding: 10px 0; display: inline-block;
+}
+.game-container {
+width:100%; max-width:1280px; aspect-ratio:16/9; display:flex; flex-direction:column;
+background: var(--panel);
+border: 1px solid #8b6e4e;
+outline: 6px double #3a2210; outline-offset: -12px;
+box-shadow: 0 25px 70px rgba(0,0,0,0.7);
+position:relative; overflow:hidden;
+}
+.top-ornament {
+flex-shrink:0; height:32px; background: #3a2210;
+border-bottom:1px solid #5a3d2b; display:flex; align-items:center; justify-content:center;
+font-size:0.85em; color:#d4c0a0; letter-spacing:0.3em; font-family: 'KaiTi', serif;
+}
+.main-panel { flex:1; display:flex; min-height:0; position: relative; }
+.map-panel {
+flex:0 0 300px; padding:24px; border-right:1px solid #d4c0a0; display:flex; flex-direction:column; gap:16px;
+background:rgba(240,230,210,0.3); z-index: 2;
+}
+.map-title { font-size:1em; font-weight:bold; color:var(--ink); letter-spacing:0.2em; text-align:center; border-bottom:1px solid #c4a878; padding-bottom:10px; margin-bottom: 8px; }
+.map-grid { display:grid; grid-template-columns:1fr; gap:12px; flex:1; }
+.map-cell {
+background:rgba(255,255,255,0.4); border:1px solid #d4c0a0; border-radius:4px; padding:12px; cursor:pointer;
+transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display:flex; align-items:center; gap:12px; position:relative;
+}
+.map-cell:hover { background:rgba(255,255,255,0.8); border-color:var(--gold); transform:translateX(5px); }
+.map-cell.active { background:#fff; border-color:var(--ink); box-shadow: 4px 0 0 var(--ink) inset; }
+.map-cell .cell-icon {
+width: 48px; height: 48px; flex-shrink: 0;
+background-size: cover; background-position: center; border-radius: 4px;
+filter: grayscale(0.2);
+}
+.map-cell .cell-name { font-size:0.95em; color:var(--ink); font-weight:bold; }
+.map-cell .cell-hint { font-size:0.7em; color:#8b6914; margin-top:2px; opacity: 0.8; }
+.content-panel { flex:1; padding:24px 32px; display:flex; flex-direction:column; gap:20px; min-width:0; position: relative; z-index: 2; }
+.scene-card {
+background: #fff;
+border: 1px solid #d4c0a0;
+padding: 20px 28px; display:flex; gap:24px; align-items:center;
+position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+transition: opacity 0.4s ease;
+}
+.scene-card::before {
+content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold);
+}
+.scene-icon-large {
+width: 120px; height: 80px; flex-shrink: 0;
+background-size: cover; background-position: center; border-radius: 2px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.scene-info-text h3 { font-size:1.4em; color:var(--ink); margin-bottom:8px; font-family: 'KaiTi', serif; border-bottom: 1px dotted #c4a878; display: inline-block; }
+.scene-info-text p { font-size:0.92em; color:#4a3427; line-height:1.8; text-align: justify; }
+.actions-row { display:flex; flex-wrap:wrap; gap:12px; }
+.act-btn {
+padding:10px 22px; font-family:inherit; font-size:0.9em; letter-spacing:0.1em;
+border:1px solid var(--ink); border-radius:0;
+cursor:pointer; background: transparent; color:var(--ink); font-weight:bold;
+transition:all 0.3s; position: relative; overflow: hidden;
+}
+.act-btn::after {
+content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--ink); transition: width 0.3s;
+}
+.act-btn:hover { background: rgba(0,0,0,0.03); transform: translateY(-2px); }
+.act-btn:hover::after { width: 100%; }
+.act-btn.special { border-color: var(--gold); color: var(--gold); }
+.act-btn.special:hover { background: rgba(166,124,0,0.05); }
+.stats-mini {
+display:flex; flex-wrap:wrap; gap:12px 24px; font-size:0.82em; color:var(--ink); padding:12px 20px;
+background:rgba(0,0,0,0.03); border-radius:2px; align-items:center;
+}
+.stat-mini { display:flex; align-items:center; gap:8px; }
+.stat-mini .stat-icon { font-size: 1.1em; filter: grayscale(1) brightness(0.5); }
+.stat-mini b { min-width:24px; font-family: 'Georgia', serif; }
+.stat-mini .bar { width:60px; height:4px; background:rgba(0,0,0,0.1); border-radius:0; overflow:hidden; }
+.stat-mini .bar-fill { height:100%; transition:width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+.bar-fill.ink { background:var(--ink); }
+.bar-fill.jade { background:var(--jade); }
+.bar-fill.red { background:var(--red); }
+.bar-fill.gold { background:var(--gold); }
+.bar-fill.purple { background:#5a4a7a; }
+.time-badge { margin-left:auto; padding:6px 16px; border:1px solid var(--red); color:var(--red); font-weight:bold; font-size:0.95em; letter-spacing: 0.1em; }
+.verses-bar { display:flex; flex-wrap:wrap; gap:8px; font-size:0.8em; align-items:center; padding: 4px 0; }
+.verse-chip { padding:4px 10px; border:1px solid #d4c0a0; background:#fff; color:#4a3427; font-style: italic; }
+.verse-chip.locked { opacity: 0.3; background: transparent; border-style: dashed; }
+.log-box {
+flex:1; min-height:0; overflow-y:auto; padding:16px;
+background:rgba(255,255,255,0.5); border:1px solid #d4c0a0;
+font-size:0.85em; color:var(--ink); line-height:1.8;
+scrollbar-width: thin; scrollbar-color: #c4a878 transparent;
+}
+.log-line { padding:4px 0; border-bottom:1px solid rgba(0,0,0,0.03); }
+.log-line.hl { color:var(--red); font-weight:bold; }
+.log-line.gl { color:var(--gold); font-weight:bold; }
+.gal-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:200; justify-content:center; align-items:flex-end; padding-bottom:50px; backdrop-filter: blur(4px); }
+.gal-modal.active { display:flex; }
+.gal-dialogue-box {
+width:90%; max-width:1000px;
+background: #fdfaf5;
+background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40' fill='%23c4a878' fill-opacity='0.1'/%3E%3C/svg%3E");
+border: 1px solid #c4a878; border-radius: 4px;
+padding:28px 32px; display:flex; gap:28px; color:var(--ink); position:relative;
+box-shadow:0 -10px 40px rgba(0,0,0,0.4); animation:slideUp 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+max-height: 80vh; overflow-y: auto;
+}
+.gal-dialogue-box::after {
+content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+border: 1px solid rgba(196,168,120,0.3); pointer-events: none;
+}
+@keyframes slideUp { from{ transform:translateY(50px); opacity:0; } to{ transform:translateY(0); opacity:1; } }
+.gal-portrait {
+flex:0 0 160px; height: 210px; display:flex; align-items:center; justify-content:center;
+background:rgba(255,255,255,0.6); border-radius:4px; border:1px solid #d4c0a0;
+box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+background-size: cover; background-position: top center;
+font-size: 3em;
+}
+.gal-name { font-size:1.2em; font-weight:bold; color:var(--red); letter-spacing:0.15em; border-bottom:1px solid #c4a878; padding-bottom:8px; font-family: 'KaiTi', serif; }
+.gal-message { font-size:1.05em; line-height:1.8; min-height:80px; margin-top: 10px; text-align: justify; white-space: pre-line; }
+.gal-choices { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+.gal-choice-btn {
+padding:10px 24px; font-family:inherit; font-size:0.92em; letter-spacing:0.1em;
+border:1px solid #d4c0a0; border-radius:0;
+background: #fff; color:var(--ink); cursor:pointer; transition:all 0.2s; font-weight:bold;
+}
+.gal-choice-btn:hover { background:var(--ink); color:#fff; border-color: var(--ink); }
+.npc-dot { position:absolute; top:12px; right:12px; width:8px; height:8px; border-radius:50%; background:var(--red); box-shadow:0 0 6px var(--red); }
+.npc-dot.known { background:var(--jade); box-shadow:0 0 6px var(--jade); }
+.scene-complete-mark { position:absolute; bottom:10px; right:12px; font-size:0.8em; color:var(--jade); display:none; }
+.map-cell.completed .scene-complete-mark { display:block; }
+@media (max-width: 900px) {
+.game-container { aspect-ratio:auto; max-width:100%; height:auto; }
+.main-panel { flex-direction:column; }
+.map-panel { flex:0 0 auto; border-right:none; border-bottom:1px solid #d4c0a0; }
+.map-grid { grid-template-columns: repeat(2,1fr); }
+.scroll-body { width:95%; padding:30px 20px; }
+.cover-title { font-size:2.8em; }
+}
+</style>
+</head><body>
+<div class="cover-screen" id="coverScreen">
+<div class="scroll-body">
+<div class="paper-grain"></div>
+<div style="font-family: 'KaiTi', serif; font-size:1.6em; color:#5a3d2b; letter-spacing:0.4em;">永和九年</div>
+<div class="cover-title">蘭亭集序</div>
+<span class="seal">羲之</span>
+<div class="cover-subtitle">太 閣 立 志 風 · 雅 集 篇</div>
+<div style="font-size: 1em; color: var(--ink); margin-bottom: 25px; letter-spacing: 0.2em;">王 羲 之 · 筆</div>
+<div style="font-size: 1.1em; letter-spacing: 0.1em; color: var(--red); animation: blinkText 2s infinite;">【 點 擊 展 卷 】</div>
+</div>
+</div>
+<div class="game-container">
+<div class="paper-grain"></div>
+<div class="top-ornament">永和九年 · 歲在癸丑 · 暮春之初 · 蘭亭雅集</div>
+<div class="main-panel">
+<div class="map-panel">
+<div class="map-title">會稽山陰 · 蘭亭勝景</div>
+<div class="map-grid" id="mapGrid">
+<div class="map-cell active" data-scene="lanting">
+<span class="cell-icon" style="background-image:url('https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1d5e02134-1258-43bd-800d-484aeef4c5f2.png')"></span>
+<div>
+<div class="cell-name">曲水畔</div>
+<div class="cell-hint">雅集核心</div>
+</div>
+<span class="npc-dot" style="background: var(--red);"></span>
+<span class="scene-complete-mark">✓</span>
+</div>
+<div class="map-cell" data-scene="zhulin">
+<span class="cell-icon" style="background-image:url('https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1be34f5f8-bbea-4e1e-9ee0-5984b92f41f8.png')"></span>
+<div>
+<div class="cell-name">竹林徑</div>
+<div class="cell-hint">幽靜清談</div>
+</div>
+<span class="npc-dot" style="background: var(--red);"></span>
+<span class="scene-complete-mark">✓</span>
+</div>
+<div class="map-cell" data-scene="shiqiao">
+<span class="cell-icon" style="background-image:url('https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/14611ac18-d440-41ce-b5e2-aa01880a6ff2.png')"></span>
+<div>
+<div class="cell-name">石橋邊</div>
+<div class="cell-hint">觀水悟筆</div>
+</div>
+<span class="npc-dot" style="background: var(--red);"></span>
+<span class="scene-complete-mark">✓</span>
+</div>
+<div class="map-cell" data-scene="gaotai">
+<span class="cell-icon" style="background-image:url('https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/112ed6c24-5df6-4025-b53c-f0d719337c39.png')"></span>
+<div>
+<div class="cell-name">高台</div>
+<div class="cell-hint">登高望遠</div>
+</div>
+<span class="scene-complete-mark">✓</span>
+</div>
+<div class="map-cell" data-scene="tingnei">
+<span class="cell-icon" style="background-image:url('https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/186d08f83-d4d2-47e4-98b8-f26e659c5d93.png')"></span>
+<div>
+<div class="cell-name">蘭亭內</div>
+<div class="cell-hint">文房四寶</div>
+</div>
+<span class="npc-dot" style="background: var(--red);"></span>
+<span class="scene-complete-mark">✓</span>
+</div>
+</div>
+<div style="font-size:0.65em;color:#8b6914;text-align:center;border-top:1px solid #d4c0a0;padding-top:10px;">
+🔴 未訪 | 🟢 已識 | ✓ 已探
+</div>
+</div>
+<div class="content-panel">
+<div class="scene-card" id="sceneCard" style="opacity: 1;">
+<div class="scene-icon-large" id="sceneIconLarge" style="background-image:url('https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1d5e02134-1258-43bd-800d-484aeef4c5f2.png')"></div>
+<div class="scene-info-text">
+<h3 id="sceneTitle">曲水畔 · 蘭亭</h3>
+<p id="sceneDesc">會稽山陰之蘭亭，崇山峻嶺環抱，茂林修竹掩映。清流激湍，映帶左右，引以為流觴曲水。此處乃雅集核心，群賢列坐其次，觥籌交錯。</p>
+</div>
+</div>
+<div class="actions-row" id="actionsRow">
+<button class="act-btn" data-action="explore">🔍 探索</button>
+<button class="act-btn" data-action="talk">💬 交談</button>
+<button class="act-btn special" data-action="qushui">🏺 流觴</button>
+<button class="act-btn" data-action="practice">🖌️ 練字</button>
+<button class="act-btn" data-action="meditate">🧘 沉思</button>
+<button class="act-btn" data-action="drink">🍶 飲酒</button>
+<button class="act-btn" data-action="compose" disabled id="btnCompose">📝 創作</button>
+</div>
+<div class="stats-mini" id="statsMini">
+<span class="stat-mini"><span class="stat-icon">🖌️</span><b id="vCal">30</b><span class="bar"><span class="bar-fill ink" id="bCal" style="width:30%"></span></span></span>
+<span class="stat-mini"><span class="stat-icon">📜</span><b id="vPoe">25</b><span class="bar"><span class="bar-fill jade" id="bPoe" style="width:25%"></span></span></span>
+<span class="stat-mini"><span class="stat-icon">🍶</span><b id="vWin">20</b><span class="bar"><span class="bar-fill red" id="bWin" style="width:20%"></span></span></span>
+<span class="stat-mini"><span class="stat-icon">✨</span><b id="vIns">10</b><span class="bar"><span class="bar-fill gold" id="bIns" style="width:10%"></span></span></span>
+<span class="stat-mini"><span class="stat-icon">🏆</span><b id="vFam">40</b><span class="bar"><span class="bar-fill purple" id="bFam" style="width:40%"></span></span></span>
+<span class="time-badge" id="timeBadge"> 辰時 · 宴會初啟</span>
+</div>
+<div class="verses-bar" id="versesBar"><span style="color:var(--gold); font-weight:bold;">🖋️ 名句庫：</span><span class="verse-chip">永和九年，歲在癸丑</span><span class="verse-chip">暮春之初，會于會稽山陰之蘭亭</span><span class="verse-chip locked">???</span><span class="verse-chip locked">???</span><span class="verse-chip locked">???</span><span class="verse-chip locked">???</span><span class="verse-chip locked">???</span><span class="verse-chip locked">???</span><span class="verse-chip locked">???</span><span class="verse-chip locked">???</span></div>
+<div class="log-box" id="logBox"><div class="log-line">• 雅集伊始，永和九年，歲在癸丑。請四處探索，領悟名句，提升靈感。</div></div>
+</div>
+</div>
+</div>
+<div class="gal-modal" id="galModal">
+<div class="gal-dialogue-box" id="galDialogueBox" role="button">
+<div class="gal-portrait" id="galPortrait"></div>
+<div style="flex:1;">
+<div class="gal-name" id="galName">謝安</div>
+<div class="gal-message" id="galMessage">點擊此處繼續...</div>
+<div class="gal-choices" id="galChoices" style="display:none;"></div>
+<div id="galContinueHint" style="text-align:right; font-size:0.75em; color:#8b7355; margin-top:10px; opacity:0.6;">▼ 點擊繼續</div>
+</div>
+</div>
+</div>
+<script>
+(function() {
+const PORTRAITS = {
+xiean: 'https://image.qwenlm.ai/public_source/f0f34ad2-4af1-41ac-84ac-35e761c2a6f8/1f377a365-c8a4-4277-85be-e676e0a3b03d.png',
+sunchuo: 'https://image.qwenlm.ai/public_source/f0f34ad2-4af1-41ac-84ac-35e761c2a6f8/17ca8e4bf-b763-4dd4-b82e-e27ea81b9c84.png',
+wangxianzhi: 'https://image.qwenlm.ai/public_source/f0f34ad2-4af1-41ac-84ac-35e761c2a6f8/1ee8c5502-6ab7-4463-8ab6-56a3b4e23c5d.png',
+xiewan: 'https://image.qwenlm.ai/public_source/f0f34ad2-4af1-41ac-84ac-35e761c2a6f8/181360695-c685-49a6-8208-be1bf0fa8e78.png',
+zhidaolin: 'https://image.qwenlm.ai/public_source/f0f34ad2-4af1-41ac-84ac-35e761c2a6f8/1de485547-1938-449a-8a6f-6057c519ed40.png',
+xitan: 'https://image.qwenlm.ai/public_source/f0f34ad2-4af1-41ac-84ac-35e761c2a6f8/130061fa0-fd9b-4800-8c98-8235e34ceff5.png',
+qushui: 'https://image.qwenlm.ai/public_source/f0f34ad2-4af1-41ac-84ac-35e761c2a6f8/1678262af-a0fd-4968-a582-7db19ad17c83.png'
+};
+const SCENES = {
+lanting: { id: 'lanting', name: '曲水畔 · 蘭亭', icon: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1d5e02134-1258-43bd-800d-484aeef4c5f2.png', desc: '會稽山陰之蘭亭，崇山峻嶺環抱，茂林修竹掩映。清流激湍，映帶左右，引以為流觴曲水。此處乃雅集核心，群賢列坐其次，觥籌交錯。', npcs: ['xiean', 'sunchuo', 'wangxianzhi'] },
+zhulin: { id: 'zhulin', name: '竹林徑', icon: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1be34f5f8-bbea-4e1e-9ee0-5984b92f41f8.png', desc: '茂林修竹，清風徐來。竹葉沙沙作響，如天籟之音。此處幽靜，適合靜心沉思，亦偶有高士漫步其間。', npcs: ['xiean', 'zhidaolin'] },
+shiqiao: { id: 'shiqiao', name: '石橋邊', icon: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/14611ac18-d440-41ce-b5e2-aa01880a6ff2.png', desc: '一座古樸石橋橫跨清溪，橋下流水潺潺，游魚可見。王獻之常在此處觀水悟筆法。', npcs: ['wangxianzhi', 'xiewan'] },
+gaotai: { id: 'gaotai', name: '高台', icon: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/112ed6c24-5df6-4025-b53c-f0d719337c39.png', desc: '登高望遠，會稽山巒盡收眼底。天朗氣清，惠風和暢。仰觀宇宙之大，俯察品類之盛，信可樂也。', npcs: ['xiean', 'sunchuo'] },
+tingnei: { id: 'tingnei', name: '蘭亭內', icon: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/186d08f83-d4d2-47e4-98b8-f26e659c5d93.png', desc: '蘭亭之內，文房四寶齊備。桌上宣紙鋪展，墨香四溢。此處最宜揮毫潑墨，靜心創作。', npcs: ['xitan', 'wangxianzhi'] }
+};
+const NPCS = {
+xiean: {
+id: 'xiean', name: '謝安', title: '太傅', portrait: PORTRAITS.xiean,
+verses: ['群賢畢至，少長咸集', '清流激湍，映帶左右'],
+defaultGreeting: '「右軍別來無恙？今日蘭亭之會，實乃山陰盛事。吾觀此間山水，不禁想起昔日洛陽風流，如今皆成追憶。然今日之聚，亦足以慰平生。」',
+defaultDialogues: [
+{ player: '與謝公清談天下大勢。', npc: '「妙哉。筆墨之事，亦是心境之現。朝堂紛爭如過眼雲煙，不若山水自在。看這溪水，雖激湍卻有律，亦如書法——起筆要沉，行筆要穩，收筆要斂。人生亦然。」', effect: 'fame+5,inspiration+8' },
+{ player: '請教謝公處世之道。', npc: '「吾嘗謂：『小隱隱陵藪，大隱隱朝市。』真正的隱逸不在山林，而在心。心若澄明，何處不是蘭亭？右軍今日之筆，當有此等境界。」', effect: 'inspiration+12,fame+5' }
+],
+sceneDialogues: {
+lanting: {
+greeting: '「右軍別來無恙？今日群賢畢至，少長咸集，實乃山陰盛事。吾觀諸位列坐曲水之畔，酒杯流轉間，詩興盎然。不知閣下對此流觴曲水有何見解？吾以為，此非僅飲酒賦詩之戲，實乃天人合一之儀式——人隨水勢，詩由心生，此中大有深意。」',
+dialogues: [
+{ player: '天下大勢，唯願以筆墨傳世，不問朝堂。', npc: '「右軍此言深合吾心。朝堂紛爭如過眼雲煙，不若山水自在。看這溪水，雖激湍卻有律，亦如書法——筆勢之起伏，猶如人生之起落。然筆墨可傳千古，權勢終歸塵土。吾觀右軍今日之筆，定有神助，蓋因心無旁騖，方能與道合一。」', effect: 'inspiration+15,fame+5' },
+{ player: '清流激湍，正是洗滌塵心之處。', npc: '「妙哉。心若止水，則萬物皆映。右軍今日之筆，定有神助。吾嘗思之：水之為物，至柔至弱，然能穿石破岩。書法亦然——看似柔弱之筆毫，卻能寫出千古不滅之字。此中道理，值得終生體悟。」', effect: 'inspiration+10,poetry+8' },
+{ player: '今日之聚，恐難再得，思之令人悵然。', npc: '「右軍感慨，正合吾意。古人云：『後之視今，亦猶今之視昔。』今日之歡，他日回想，亦成追憶。然正因如此，當下每一刻才更顯珍貴。且盡此杯，莫負春光。」', effect: 'poetry+12,inspiration+8' }
+]
+},
+zhulin: {
+greeting: '「右軍，這竹林深處清風徐來，是否比朝堂那喧囂之地更令人神往？吾每至此間，便覺俗慮盡消。竹之為物，中空外直，不阿不諛，正合君子之德。吾常想，若能終老此間，與竹為友，亦是一生快事。」',
+dialogues: [
+{ player: '竹林之隱，乃追求生命本真。', npc: '「正是。修竹高潔，不阿諛於權貴，此乃我輩名士應有之骨。心若自在，何處不蘭亭。右軍可知，吾年輕時曾隱居東山，終日與山水為伴。後雖出仕，然心中那片竹林，從未消失。真正的隱逸，不在身之所在，而在心之所向。」', effect: 'inspiration+12' },
+{ player: '聽竹葉沙沙，勝過管弦之樂。', npc: '「大音希聲。自然之韻，非絲竹所能比擬也。老子云：『大音希聲，大象無形。』最偉大的音樂，是聽不見的；最偉大的形象，是看不見的。竹林之聲，正是天地之聲，聽之可忘機心。」', effect: 'poetry+10' },
+{ player: '竹有節，人有志，二者相通。', npc: '「善哉！竹之節，猶人之志。節節向上，不屈不撓。右軍之書法，亦如修竹——骨力挺拔，氣韻生動。吾觀右軍筆下之竹，雖無形而有神，此乃最高境界。」', effect: 'calligraphy+8,inspiration+10' }
+]
+},
+gaotai: {
+greeting: '「登高臨遠，仰觀宇宙之大，俯察品類之盛。人之位置，在天地間究竟何在？右軍，吾每登此台，便覺自身渺小如塵。然細思之，人雖渺小，卻能感知宇宙，能書寫文章，能創造美——此乃人之偉大處。」',
+dialogues: [
+{ player: '人在天地間，不過一芥子，然情志可通萬古。', npc: '「好一個情志通萬古！方寸之間，亦可容納宇宙。右軍氣度，更上一層樓矣。吾以為，書法之妙，正在於此——方寸宣紙之上，可寫出天地之大，可容納古今之變。右軍今日之悟，已近道矣。」', effect: 'inspiration+20,poetry+10' },
+{ player: '死生亦大矣，此情此景，感慨系之。', npc: '「古人云死生之大，誠不我欺。今日之歡，亦是明日之念。然吾以為，不必悲觀。死生雖大，若能於有生之年，留下不朽之作，則精神可與天地同壽。右軍之書法，必能傳世千古。」', effect: 'poetry+15,inspiration+5' },
+{ player: '天地無窮，人生有限，當如何？', npc: '「天地雖無窮，人生雖有限，然有限之中可求無限。一篇好文，一幅好字，皆可超越時間之限制。右軍今日在此高台之上，所見所感，皆可化為筆下之墨，傳之永遠。」', effect: 'inspiration+15,fame+8' }
+]
+}
+}
+},
+sunchuo: {
+id: 'sunchuo', name: '孫綽', title: '文學家', portrait: PORTRAITS.sunchuo,
+verses: ['此地有崇山峻嶺，茂林修竹', '所以遊目騁懷，足以極視聽之娛'],
+defaultGreeting: '「右軍兄，今日景色絕佳，正宜賦詩。吾觀此間山水，不禁想起昔日遊歷名山大川之經歷。每一處風景，皆有其獨特之韻味，正如每一篇詩文，皆有其獨特之靈魂。」',
+defaultDialogues: [
+{ player: '與孫兄對詩。', npc: '「佳句天成，痛快！吾以為，詩之妙，在於自然流露，非刻意雕琢。右軍之詩，如行雲流水，渾然天成。」', effect: 'poetry+5' },
+{ player: '請教孫兄作文之法。', npc: '「作文如做人，須有真情實感。無情之文，如無源之水，雖華麗而無生命力。右軍之文，情真意切，故能動人。」', effect: 'poetry+8,inspiration+5' }
+],
+sceneDialogues: {
+lanting: {
+greeting: '「右軍兄，今日景色絕佳，崇山峻嶺之壯麗，非筆墨難以形容。吾觀此間，山勢連綿如龍，水聲潺潺如琴，竹林搖曳如舞。此等美景，若不能以詩文記之，實乃人生一大憾事。右軍兄可有興致，與吾共賦一首？」',
+dialogues: [
+{ player: '崇山峻嶺，茂林修竹。此言得之。', npc: '「哈哈，此八字已道盡蘭亭之勝。若再賦詩一首，豈不快哉？吾以為，寫景之文，貴在傳神。山之高，不在其形，而在其勢；竹之茂，不在其葉，而在其節。右軍兄以為如何？」', effect: 'poetry+10,inspiration+10' },
+{ player: '流觴曲水，正是賦詩之好時節。', npc: '「然也。且看那杯中物，能引出多少佳句。吾嘗思之：酒之為物，能使人忘卻塵世煩惱，回歸本真自我。醉後之詩，往往最真。右軍兄今日若飲至微醺，定能寫出驚世之作。」', effect: 'wine+5,poetry+8' },
+{ player: '詩文之道，在乎真情。', npc: '「右軍兄所言極是。吾以為，古今文章，能傳世者，皆因有情。無情之文，雖工巧而無靈魂。今日蘭亭之聚，群賢畢至，此情此景，若能以真情記之，必成千古絕唱。」', effect: 'poetry+12,inspiration+8' }
+]
+},
+gaotai: {
+greeting: '「登此高台，足以極視聽之娛。右軍兄可有佳句？吾觀遠山如黛，近水如鏡，天地之間，萬物並育。此等壯闊景象，令人胸襟大開，詩興大發。」',
+dialogues: [
+{ player: '遊目騁懷，足以極視聽之娛。', npc: '「精彩！此句大氣磅礴，直抒胸臆。今日雅集，定能傳為佳話。吾以為，登高之樂，不僅在於所見之廣，更在於所思之深。站在高處，方能看清全局；跳出塵世，方能悟得真諦。」', effect: 'poetry+15,fame+5' },
+{ player: '天朗氣清，惠風和暢。', npc: '「誠然。春日之美，莫過於此。吾嘗想，若人人皆能如春日般溫和，世間豈不更美好？右軍兄之為人，亦如這春日惠風——溫和而不失力量，柔軟而不失骨氣。」', effect: 'inspiration+10' },
+{ player: '遠望群山，思接千載。', npc: '「善哉！右軍兄之思，已超越時空。吾以為，真正之文人，當有此等胸襟——既能感受當下之美，又能聯想古今之變。如此，文章方有深度，書法方有厚度。」', effect: 'inspiration+12,poetry+8' }
+]
+}
+}
+},
+wangxianzhi: {
+id: 'wangxianzhi', name: '王獻之', title: '書家', portrait: PORTRAITS.wangxianzhi,
+verses: ['是日也，天朗氣清，惠風和暢'],
+defaultGreeting: '「父親，今日筆墨間似乎多了些神采。孩兒觀父親近日之字，愈發渾厚自然，想必是心境有所提升。書法之道，終究是心法，筆墨只是外顯。」',
+defaultDialogues: [
+{ player: '指導獻之書法。', npc: '「孩兒謹記教誨。父親常言：『書法如做人，須有骨氣。』孩兒雖年幼，亦知此理。」', effect: 'calligraphy+5' },
+{ player: '與獻之論書法之變。', npc: '「父親，孩兒以為，書法當隨時代而變。古法雖好，亦須創新。若一味模仿，終難超越前人。」', effect: 'calligraphy+8,inspiration+5' }
+],
+sceneDialogues: {
+shiqiao: {
+greeting: '「父親，孩兒觀水流遇石則分，雖萬變不離其宗，悟得布白之法。水之流動，看似無常，實則有律——遇石則繞，遇窪則聚，遇崖則落。書法之筆勢，亦當如此：隨形就勢，自然流暢，不可強求。」',
+dialogues: [
+{ player: '布白如水流，當順其自然，不可強求。', npc: '「孩兒領教了。筆墨亦是流動之水，強求則滯，自然則靈。父親曾言：『意在筆先。』孩兒以為，此『意』非刻意之思，而是自然之悟。當心與筆合，筆與紙合，方能寫出神品。」', effect: 'calligraphy+15,inspiration+10' },
+{ player: '觀水知勢，書法亦然。', npc: '「水之勢，柔而克剛。孩兒受教。父親之書法，正有此等氣勢——看似柔和，實則內含千鈞之力。孩兒當以此為目標，終生追求。」', effect: 'calligraphy+12' },
+{ player: '獻之，你觀這橋下流水，有何感悟？', npc: '「父親，孩兒觀此水，悟得三理：一曰『柔能克剛』，水至柔，然能穿石；二曰『變而不離其宗』，水雖萬變，終歸大海；三曰『順勢而為』，水不強求，卻能成就一切。此三理，皆可用於書法。」', effect: 'inspiration+15,calligraphy+10' }
+]
+},
+tingnei: {
+greeting: '「父親，今日之墨香似乎透著山林清氣，與往日大不相同。孩兒以為，此乃蘭亭之氣——山水之靈，竹林之韻，皆融入此墨中。父親今日落筆，定有神明相助。」',
+dialogues: [
+{ player: '心境不同，筆意自異。今日蘭亭之氣，皆入墨中。', npc: '「難怪父親落筆有神。孩兒也想試試這融入了山林之氣的筆觸。父親，孩兒以為，書法之最高境界，是『忘我』——忘記技法，忘記形式，只讓心與筆自然流露。如此寫出之字，方有靈魂。」', effect: 'calligraphy+10,fame+5' },
+{ player: '獻之，你覺得書法與做人有何相通？', npc: '「父親，孩兒以為，書法如做人——須有骨氣，須有真情，須有創新。無骨之字，如無骨之人，雖美而無力量；無情之字，如無情之人，雖工而無靈魂；無新之字，如守舊之人，雖穩而無生氣。」', effect: 'calligraphy+12,inspiration+8' }
+]
+}
+}
+},
+xiewan: {
+id: 'xiewan', name: '謝萬', title: '名士', portrait: PORTRAITS.xiewan,
+verses: ['雖無絲竹管弦之盛'],
+defaultGreeting: '「右軍！今日不醉不歸！吾觀此間美酒，不禁想起昔日洛陽酒肆之風流。那時我們年少輕狂，飲酒賦詩，何等快意！如今雖已中年，然此心未老，今日定要盡興！」',
+defaultDialogues: [
+{ player: '陪謝萬飲酒。', npc: '「爽快！右軍，吾以為，酒之妙，不在醉，而在微醺之間——那時心神最自由，思緒最活躍。來，再飲一杯！」', effect: 'wine+5' },
+{ player: '謝兄海量，小弟佩服。', npc: '「哈哈，右軍過獎。吾以為，飲酒如做人，當豪爽而不失分寸。醉而不亂，方為真名士。」', effect: 'wine+8,fame+5' }
+],
+sceneDialogues: {
+shiqiao: {
+greeting: '「哈哈，右軍！雖無絲竹，但有這潺潺清音，當飲一大杯！吾觀此橋此水，不禁想起莊子所言之『天地有大美而不言』。這山水之間，處處皆是天籟，何必再求絲竹？來，與吾共飲此杯，敬這大好河山！」',
+dialogues: [
+{ player: '山水清音方為天籟，絲竹管弦反成俗物。', npc: '「痛快！說得好！今日不醉不歸，看是你的筆快，還是我的杯快！右軍，吾以為，真正的藝術，皆來自自然。絲竹管弦，雖美而人造；山水清音，雖樸而天成。右軍之書法，亦如這山水——自然流露，渾然天成。」', effect: 'wine+15,inspiration+10' },
+{ player: '謝兄海量，小弟陪飲一杯。', npc: '「好！這才是名士風範！右軍，吾觀你今日神情，似有所思。可是為那《蘭亭集序》之事？吾以為，不必刻意追求，酒到酣處，情到深時，自然揮灑，方為上品。」', effect: 'wine+10,fame+5' },
+{ player: '飲酒賦詩，乃人生樂事。', npc: '「然也！吾以為，人生苦短，當及時行樂。然此『樂』非放縱之樂，而是精神之自由。飲酒之時，忘卻塵世煩惱；賦詩之際，抒發心中真情。此乃真樂也。」', effect: 'wine+12,poetry+8' }
+]
+}
+}
+},
+zhidaolin: {
+id: 'zhidaolin', name: '支道林', title: '高僧', portrait: PORTRAITS.zhidaolin,
+verses: ['仰觀宇宙之大，俯察品類之盛'],
+defaultGreeting: '「阿彌陀佛，右軍居士，蘭亭之會，禪意盎然。吾觀此間山水，無一不顯佛法——山是山，水是水，然山非山，水非水。居士可曾悟得此中道理？」',
+defaultDialogues: [
+{ player: '請教禪理。', npc: '「居士慧根深厚。吾以為，禪不在經文，而在日常——飲茶是禪，走路是禪，書寫亦是禪。當心無雜念，專注當下，便是禪定。」', effect: 'inspiration+5' },
+{ player: '大師，書法與禪有何相通？', npc: '「善哉！書法與禪，皆重『空』字。書法之布白，猶如禪之空性——無處不是有，有處皆是無。居士之書，已近禪境。」', effect: 'inspiration+10,calligraphy+5' }
+],
+sceneDialogues: {
+zhulin: {
+greeting: '「阿彌陀佛。居士身處這茂林修竹之間，可曾見到那空中之色，色中之空？吾觀此竹林，竹是竹，然竹非竹——竹之形為色，竹之性為空。色空不二，方為真諦。居士之書法，亦當悟此道理。」',
+dialogues: [
+{ player: '書法虛實，正如佛家色空。筆劃為實，布白為空。', npc: '「善哉。虛實相生，萬象森羅皆在其中。居士之書，已入禪境矣。吾以為，最高之書法，不在筆劃之多寡，而在布白之巧妙。留白之處，正是意境所在——如禪宗所言：『不立文字，教外別傳。』」', effect: 'inspiration+20,calligraphy+10' },
+{ player: '萬物皆幻，唯有此情此刻為真。', npc: '「真亦是假，假亦是真。居士著相了，卻也是一番赤誠。吾以為，不必執著於真假——花開是幻，花落亦是幻；然此幻之中，自有真諦。居士今日之感悟，已是難得。」', effect: 'inspiration+15' },
+{ player: '大師，如何方能達到『忘我』之境？', npc: '「阿彌陀佛。忘我非刻意忘，而是自然忘。如這竹林之風——風來竹動，風去竹靜，竹不曾有意動，亦不曾有意靜。居士書寫時，若能如這竹林——不執於筆，不執於字，不執於我，方能達到『無我』之境。」', effect: 'inspiration+18,calligraphy+8' }
+]
+}
+}
+},
+xitan: {
+id: 'xitan', name: '郗曇', title: '書生', portrait: PORTRAITS.xitan,
+verses: ['一觴一，亦足以暢敘幽情'],
+defaultGreeting: '「先生書法，冠絕古今，令晚生佩服。晚生日夜揣摩先生之字，雖未能得其皮毛，然心中嚮往之情，愈發強烈。今日得見先生，實乃三生有幸。」',
+defaultDialogues: [
+{ player: '與郗曇談書。', npc: '「受益匪淺。先生之教，如春風化雨，潤物無聲。晚生當終生銘記。」', effect: 'fame+5' },
+{ player: '郗兄對書法有何獨到見解？', npc: '「晚生以為，書法之妙，在於『氣韻生動』四字。氣者，生命力也；韻者，節奏感也。無氣之字，如死人；無韻之字，如噪音。先生之字，氣韻兼備，故能動人。」', effect: 'calligraphy+8,inspiration+5' }
+],
+sceneDialogues: {
+tingnei: {
+greeting: '「先生書法入神，在下日夜揣摩，始終難及皮毛。今日斗膽請先生賜教。晚生以為，書法之道，深如大海——表面平靜，內涵無窮。先生之字，看似隨意，實則每一筆皆經千錘百煉。此等境界，晚生何時方能企及？」',
+dialogues: [
+{ player: '書法之道，唯有多練，更須養氣。氣足則神完。', npc: '「養氣之說，振聾發聵。在下定當先修身養氣，再求筆墨之精。先生，晚生有一疑問：古人云『書如其人』，然則如何方能使書法與人格統一？晚生以為，當先做人，後做書——人格高尚，書法自然高潔。」', effect: 'fame+15,calligraphy+8' },
+{ player: '一觴一詠，亦足以暢敘幽情。情到深處，筆墨自通。', npc: '「先生所言極是。情動於衷而形於言，更形於筆。晚生以為，書法之最高境界，是『忘技』——忘記所有技法，只讓情感自然流露。如此寫出之字，方有靈魂，方能傳世。」', effect: 'poetry+10,calligraphy+5' },
+{ player: '郗兄，你認為書法之傳承，重在何處？', npc: '「先生，晚生以為，書法之傳承，重在『神』而非『形』。若只學其形，終為模仿；若悟得其神，方能創新。先生之書法，神韻獨具，晚生雖不能至，心嚮往之。」', effect: 'calligraphy+10,fame+8' }
+]
+}
+}
+}
+};
+const EXPLORE_SCENES = [
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1d5e02134-1258-43bd-800d-484aeef4c5f2.png',
+name: '🐟 溪畔觀魚 · 水之哲理',
+text: '你沿溪而行，俯身觀水中游魚。魚兒悠然自得，穿梭於石縫之間，渾然不覺岸上有人注視。你忽有所悟：魚之樂，在於忘我——它不思考自己是否快樂，只是自然地游動。莊子與惠子濠梁之辯，今日親見，方知「子非魚，安知魚之樂」並非詭辯，而是對生命本真狀態的深刻洞察。水底石子如珠璣，在清流中閃爍，每一顆都經水流千年打磨，圓潤光滑。你想：人之修養，亦當如這石子——經歲月洗禮，磨去棱角，方顯溫潤本色。',
+choice: '細細品味，悟魚水之樂',
+effect: 'inspiration+12,poetry+8'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1be34f5f8-bbea-4e1e-9ee0-5984b92f41f8.png',
+name: '🎋 竹林清風 · 君子之德',
+text: '風過處萬竿齊響，如天籟之音。你步入竹林深處，陽光透過竹葉，灑下斑駁光影。竹之為物，中空外直，節節向上——中空象徵虛心，外直象徵正直，節節象徵堅韌。你想起《詩經》所言：「如竹苞矣，如松茂矣。」竹不僅是植物，更是君子人格的象徵。你閉目靜聽，竹葉沙沙之聲，如古人低語，訴說著千年不變的真理：真正的力量，不在於剛強，而在於柔韌；真正的智慧，不在於聰敏，而在於謙虛。',
+choice: '靜聽風吟，悟竹之德',
+effect: 'inspiration+10,calligraphy+8'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/112ed6c24-5df6-4025-b53c-f0d719337c39.png',
+name: '⛰️ 山間雲霧 · 天地之大',
+text: '你登高遠望，只見群山連綿，雲霧繚繞。山峰時隱時現，如仙境一般。你忽感自身渺小——在這浩瀚天地之間，人不過是滄海一粟。然而，正是這渺小的存在，卻能感知天地之大，能思考宇宙之奧秘，能創造出不朽的藝術。你想：山之偉大，不在於其高，而在於其穩；雲之美麗，不在於其形，而在於其變。書法亦然——字之偉大，不在於其大，而在於其穩；筆之美麗，不在於其華，而在於其變。',
+choice: '仰望雲山，悟天地之道',
+effect: 'inspiration+15,fame+5'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/186d08f83-d4d2-47e4-98b8-f26e659c5d93.png',
+name: '🌲 古松之下 · 歲月之痕',
+text: '你來到一棵古松之下，樹幹粗壯，枝葉蒼勁。樹皮上佈滿裂痕，每一道都是歲月的印記。你在樹下石桌旁坐下，桌上文房四寶齊備，似有前人曾在此揮毫。你撫摸樹幹，感受那粗糙的質感，心想：這棵松樹，見證了多少春秋？它靜靜站立，不語不言，卻以自身的存在，訴說著時間的力量。你想：人之生命，雖短於松樹，然若能留下不朽之作，則精神可與古松同壽。你取出紙筆，欲將此情此景，化為永恆。',
+choice: '撫松沉思，悟歲月之真',
+effect: 'inspiration+12,calligraphy+10'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/f0f34ad2-4af1-41ac-84ac-35e761c2a6f8/1678262af-a0fd-4968-a582-7db19ad17c83.png',
+name: '🌸 落花流水 · 無常之美',
+text: '你漫步溪邊，只見桃花花瓣隨水流逝，形成一幅動人的畫卷。花瓣在水面上旋轉、漂浮，最終消失在遠方。你想起孔子臨川之嘆：「逝者如斯夫，不舍晝夜。」花之凋零，水之流逝，皆是無常之體現。然而，正是這無常，賦予了美以深度——若花永不凋謝，則賞花之情必減；若水永不流逝，則觀水之趣必淡。你想：藝術之魅力，亦在於此——它捕捉瞬間之美，將其化為永恆。今日蘭亭之聚，明日便成追憶；然若有詩文記之，則此情此景，可傳千古。',
+choice: '觀落花流水，悟無常之美',
+effect: 'poetry+15,inspiration+10'
+}
+];
+const MEDITATE_SCENES = [
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/103934fa7-0ead-4052-9592-0b4571836a80.png',
+name: '🌌 越名教而任自然',
+text: '你閉目冥想，思緒飄向遠古。嵇康臨刑前，撫琴一曲《廣陵散》，從容就義；阮籍駕車至窮途，哭而返。這些魏晉名士，以生命詮釋了「越名教而任自然」的真諦。名教禮法，本為維繫社會秩序而設，然若過度束縛，則成枷鎖。真正的自由，不在於放縱，而在於回歸純真自性——如嬰兒般純粹，如天地般自然。你感悟到：書法之最高境界，亦是「任自然」——不刻意追求技法，不執著於形式，只讓心與筆自然流露。如此寫出之字，方有靈魂，方能與天地同流。',
+choice: '任自然之性，悟自由之真',
+effect: 'inspiration+20,poetry+10'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/116322f3d-4366-45f1-ac9d-4f4ba6b5b91b.png',
+name: '🕯️ 死生亦大矣',
+text: '你於冥想中觀照生命之短暫。想起古人對凋零之悲戚——屈原投江，賈誼早逝，諸葛亮星落五丈原。死生之事，確實是人生最大之事。然而，你亦想到：正因生命有限，每一刻才顯得珍貴；正因死亡不可避免，活著時的創造才更有意義。你想：藝術之價值，正在於此——它超越生死，讓短暫的生命獲得永恆。一篇好文，一幅好字，皆可傳世千古，使作者之精神，與天地同壽。此念一起，你心中悲戚轉為力量，筆墨遂得厚重之魂。',
+choice: '感悟生死，悟生命之重',
+effect: 'poetry+20,inspiration+12'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/11c3ed8fb-ab1b-424d-a6fc-12ff488aad83.png',
+name: '🦋 物我兩忘 · 莊周夢蝶',
+text: '你靜坐冥想，思緒漸入恍惚之境。想起莊周夢蝶之典故——不知是莊周夢為蝴蝶，還是蝴蝶夢為莊周？此問看似荒謬，實則揭示了認識論的根本問題：我們如何確定自己所感知的是真實？你進一步思考：書法創作時，亦當有此等境界——忘記自己是書寫者，忘記筆是工具，忘記紙是載體，只讓「書寫」這一行為自然發生。此時，物我界限消失，心筆紙合一，方能達到「天人合一」之最高境界。此乃藝術創造之秘訣，亦是人生修養之極致。',
+choice: '物我兩忘，悟天人合一',
+effect: 'inspiration+22,calligraphy+10'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1ef742f75-cfe0-4c9c-8312-7a3cd3279791.png',
+name: '🌙 天地與我並生',
+text: '你冥想至深夜，只見明月高懸，湖面如鏡，天地倒影其中。你想起莊子所言：「天地與我並生，而萬物與我為一。」此言何等壯闊！人雖渺小，然能感知天地，能思考宇宙，能創造藝術——此乃人之偉大處。你想：書法之妙，正在於此——方寸宣紙之上，可寫出天地之大，可容納古今之變。一筆一劃，皆是宇宙之縮影；一字一句，皆是生命之見證。此時，你感到自身與天地融為一體，心中湧起無限力量。',
+choice: '與天地合一，悟宇宙之大',
+effect: 'inspiration+18,poetry+12'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/14611ac18-d440-41ce-b5e2-aa01880a6ff2.png',
+name: '💧 古今一瞬 · 流水之悟',
+text: '你靜坐石橋之上，觀橋下流水潺潺。水聲不絕，如時間之腳步，永不停歇。你想起孔子臨川之嘆，想起蘇子「逝者如斯夫」之感慨。水流千年，不變其性；人生百年，終歸塵土。然而，你想：正因時間流逝，當下每一刻才更顯珍貴；正因生命短暫，創造之意義才更加重大。你進一步感悟：書法之傳承，亦如這流水——前人開創，後人繼承，代代相傳，永無止境。今日之我，站在千年書法傳統之肩上；明日之我，亦將成為後人繼承之基礎。此念一起，心中責任感油然而生。',
+choice: '觀水悟時，悟古今之變',
+effect: 'inspiration+15,calligraphy+12,fame+5'
+}
+];
+const PRACTICE_SCENES = [
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1c3d74d15-06f5-4d35-888a-0b6683fa7b99.png',
+name: '🪵 入木三分 · 力透紙背',
+text: '你憶及昔日於木板寫字，竟使墨跡透入木中三分，此乃腕力與氣韻高度集中的展現。你調整呼吸，追求每一筆皆有沉穩厚重之力。你想：書法之力，不在於蠻力，而在於「氣」——氣沉丹田，力達筆尖，方能寫出有力量之字。此力非物理之力，而是精神之力、生命之力。你反覆練習，每一筆皆傾注全部心神，直至手酸腕痛，仍不停歇。因為你知道：真正的藝術，需要付出代價；真正的造詣，需要終生追求。',
+choice: '力透紙背，悟書法之力',
+effect: 'calligraphy+22'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1e904a5d8-96e2-4d33-ac96-b2b8b3d30a35.png',
+name: '🦢 鵝之姿態 · 筆勢之妙',
+text: '你來到池邊，觀白鵝游水。鵝之頸項，彎曲優美，如書法之筆勢；鵝之游動，從容不迫，如書法之節奏。你想起前人傳說：王羲之愛鵝，曾為觀鵝而寫《黃庭經》換鵝。起初不解，今日親見，方悟其中奧妙——鵝之姿態，正是書法筆勢之最佳範本。那彎曲的頸項，如「折」筆之轉折；那伸展的翅膀，如「捺」筆之舒展；那從容的游動，如整篇書法之節奏。你取出紙筆，模仿鵝之姿態寫字，果然筆勢更加流暢自然。',
+choice: '觀鵝悟筆，悟筆勢之妙',
+effect: 'calligraphy+18,inspiration+10'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1fd1f8814-28fc-4ad2-9a60-6403f4831bf9.png',
+name: '♾️ 永字八法 · 書法之基',
+text: '「永」字備八法：側（點）、勒（橫）、弩（豎）、趯（鉤）、策（提）、掠（撇）、啄（短撇）、磔（捺）。你反覆推敲點畫間的呼應，體悟筆勢變換的萬千氣象。你想：此八法，看似簡單，實則涵蓋了書法之全部基本筆劃。如同音樂之七音，雖只有七個，卻能組成無限旋律。你逐一練習，每一筆皆追求完美——點如高峰墜石，橫如千里陣雲，豎如萬歲枯藤。此乃書法之基石，亦是終生修煉之課題。',
+choice: '精研八法，悟書法之基',
+effect: 'calligraphy+20,inspiration+8'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1bb0c2585-9097-40b8-980c-de17d0691261.png',
+name: '✍️ 意在筆先 · 心手相應',
+text: '你靜坐案前，閉目凝神，心中先構思整篇之佈局、氣勢、節奏。待胸有成竹，方取筆揮灑。你想：書法之妙，在於「意在筆先」——下筆之前，心中已有完整之圖像。此「意」非刻意之思，而是長期修煉後之自然流露。如同武術高手，出招之前，心中已有勝算；如同音樂大師，演奏之前，心中已有旋律。你反覆練習此法，直至心手相應，筆隨心走，方知此乃書法之最高境界。',
+choice: '意在筆先，悟心手合一',
+effect: 'calligraphy+18,inspiration+12'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1543af9cc-26aa-42d5-99cc-0ea585b85aa1.png',
+name: '📜 碑刻傳承 · 不朽之志',
+text: '你來到一方古碑之前，碑上刻有前人書法，雖經風雨侵蝕，字跡仍清晰可辨。你撫摸碑文，感受那穿越千年的力量。你想：這些書法家，早已作古，然其精神，透過這些字跡，依然鮮活。書法之偉大，正在於此——它超越生死，讓短暫的生命獲得永恆。你暗下決心：今日之練習，不僅為提升技藝，更為留下不朽之作，讓千年之後之人，仍能感受今日之情。此念一起，心中湧起無限力量與責任感。',
+choice: '撫碑立志，悟傳承之重',
+effect: 'calligraphy+15,fame+12,inspiration+8'
+}
+];
+const ALL_VERSES = ['永和九年，歲在癸丑', '暮春之初，會于會稽山陰之蘭亭', '群賢畢至，少長咸集', '此地有崇山峻嶺，茂林修竹', '清流激湍，映帶左右', '雖無絲竹管弦之盛', '一觴一詠，亦足以暢敘幽情', '是日也，天朗氣清，惠風和暢', '仰觀宇宙之大，俯察品類之盛', '所以遊目騁懷，足以極視聽之娛'];
+const TIME_NAMES = ['辰時 · 宴會初啟', '巳時 · 雅興漸濃', '午時 · 酒酣耳熱', '未時 · 詩情澎湃', '申時 · 日影西斜', '酉時 · 暮色將至'];
+let state = {
+scene: 'lanting',
+stats: { calligraphy:30, poetry:25, wine:20, inspiration:10, fame:40 },
+time:0, maxTime:5,
+verses: ['永和九年，歲在癸丑', '暮春之初，會于會稽山陰之蘭亭'],
+npcMet: {},
+sceneCompleted: { lanting:false, zhulin:false, shiqiao:false, gaotai:false, tingnei:false },
+actionsCount:0, actionsPerTime:4,
+completed:false
+};
+const $ = s => document.querySelector(s);
+const logBox = $('#logBox');
+function updateAll() {
+const sc = SCENES[state.scene];
+$('#sceneCard').style.opacity = '0';
+setTimeout(() => {
+$('#sceneIconLarge').style.backgroundImage = `url('${sc.icon}')`;
+$('#sceneTitle').textContent = sc.name;
+$('#sceneDesc').textContent = sc.desc;
+$('#sceneCard').style.opacity = '1';
+}, 200);
+document.querySelectorAll('.map-cell').forEach(cell => {
+const sid = cell.dataset.scene;
+cell.classList.toggle('active', sid === state.scene);
+cell.classList.toggle('completed', state.sceneCompleted[sid]);
+const dot = cell.querySelector('.npc-dot');
+if (dot && SCENES[sid]) {
+const npcs = SCENES[sid].npcs;
+const hasUnmet = npcs.some(id => !state.npcMet[id]);
+dot.style.background = hasUnmet ? 'var(--red)' : 'var(--jade)';
+}
+});
+const s = state.stats;
+$('#vCal').textContent = s.calligraphy; $('#bCal').style.width = Math.min(s.calligraphy,100)+'%';
+$('#vPoe').textContent = s.poetry; $('#bPoe').style.width = Math.min(s.poetry,100)+'%';
+$('#vWin').textContent = s.wine; $('#bWin').style.width = Math.min(s.wine,100)+'%';
+$('#vIns').textContent = s.inspiration; $('#bIns').style.width = Math.min(s.inspiration,100)+'%';
+$('#vFam').textContent = s.fame; $('#bFam').style.width = Math.min(s.fame,100)+'%';
+let vHtml = '<span style="color:var(--gold); font-weight:bold;">🖋️ 名句庫：</span>';
+ALL_VERSES.forEach(v => {
+vHtml += state.verses.includes(v) ? `<span class="verse-chip">${v}</span>` : `<span class="verse-chip locked">???</span>`;
+});
+$('#versesBar').innerHTML = vHtml;
+$('#timeBadge').textContent = '⏳ ' + TIME_NAMES[Math.min(state.time, state.maxTime)];
+const canCompose = state.stats.inspiration >= 70 && state.stats.calligraphy >= 50 && state.verses.length >= 8;
+$('#btnCompose').disabled = !canCompose;
+$('#btnCompose').classList.toggle('special', canCompose);
+}
+function addLog(msg, cls = '') {
+const div = document.createElement('div');
+div.className = 'log-line ' + cls;
+div.textContent = `• ${msg}`;
+logBox.prepend(div);
+if (logBox.children.length > 40) logBox.lastChild.remove();
+}
+function advanceTime() {
+state.actionsCount++;
+if (state.actionsCount >= state.actionsPerTime) {
+state.actionsCount = 0;
+state.time++;
+if (state.time <= state.maxTime) {
+addLog(`時光流轉，進入【${TIME_NAMES[state.time]}】`, 'hl');
+} else if (!state.completed) {
+showAnalysisEnding(false);
+}
+}
+updateAll();
+}
+function applyEffect(eff) {
+if (!eff) return;
+eff.split(',').forEach(e => {
+const parts = e.trim().split('+');
+if(parts.length < 2) return;
+const k = parts[0];
+const v = parseInt(parts[1]);
+const keyMap = { calligraphy:'calligraphy', poetry:'poetry', wine:'wine', inspiration:'inspiration', fame:'fame' };
+if (keyMap[k]) state.stats[keyMap[k]] = Math.min(100, state.stats[keyMap[k]] + v);
+});
+}
+function openModal(portrait, name, msg, choices = null, onChoice = null) {
+const modal = $('#galModal');
+const portraitEl = $('#galPortrait');
+const cBox = $('#galChoices');
+const hint = $('#galContinueHint');
+const dialogueBox = $('#galDialogueBox');
+dialogueBox.onclick = null;
+cBox.innerHTML = '';
+portraitEl.style.backgroundImage = portrait ? `url('${portrait}')` : 'none';
+portraitEl.textContent = portrait ? '' : '👤';
+$('#galName').textContent = name;
+$('#galMessage').textContent = msg;
+if (choices && choices.length > 0) {
+cBox.style.display = 'flex';
+hint.style.display = 'none';
+choices.forEach((c, i) => {
+const btn = document.createElement('button');
+btn.className = 'gal-choice-btn';
+btn.textContent = c.text;
+btn.onclick = (e) => {
+e.stopPropagation();
+if (onChoice) onChoice(i);
+};
+cBox.appendChild(btn);
+});
+} else {
+cBox.style.display = 'none';
+hint.style.display = 'block';
+dialogueBox.onclick = (e) => {
+e.stopPropagation();
+if (onChoice) onChoice(0);
+else closeGalModal();
+};
+}
+modal.classList.add('active');
+}
+function closeGalModal() {
+const modal = $('#galModal');
+modal.classList.remove('active');
+$('#galDialogueBox').onclick = null;
+$('#galChoices').innerHTML = '';
+$('#galMessage').textContent = '';
+}
+function handleAction(act) {
+if (state.time > state.maxTime || state.completed) return;
+if ($('#galModal').classList.contains('active')) return;
+const sc = SCENES[state.scene];
+switch(act) {
+case 'explore':
+const ex = EXPLORE_SCENES[Math.floor(Math.random()*EXPLORE_SCENES.length)];
+openModal(ex.portrait, ex.name, ex.text, [
+{text: ex.choice},
+{text: '暫且作罷'}
+], (idx) => {
+if (idx === 1) { closeGalModal(); return; }
+applyEffect(ex.effect);
+state.sceneCompleted[state.scene] = true;
+addLog(`探索【${sc.name}】：${ex.name}`);
+closeGalModal();
+advanceTime();
+});
+break;
+case 'meditate':
+const md = MEDITATE_SCENES[Math.floor(Math.random()*MEDITATE_SCENES.length)];
+openModal(md.portrait, md.name, md.text, [
+{text: md.choice},
+{text: '暫且作罷'}
+], (idx) => {
+if (idx === 1) { closeGalModal(); return; }
+applyEffect(md.effect);
+addLog(`靜心沉思：${md.name}`, 'hl');
+closeGalModal();
+advanceTime();
+});
+break;
+case 'practice':
+const pr = PRACTICE_SCENES[Math.floor(Math.random()*PRACTICE_SCENES.length)];
+openModal(pr.portrait, pr.name, pr.text, [
+{text: pr.choice},
+{text: '暫且作罷'}
+], (idx) => {
+if (idx === 1) { closeGalModal(); return; }
+applyEffect(pr.effect);
+addLog(`揮毫練字：${pr.name}`, 'gl');
+closeGalModal();
+advanceTime();
+});
+break;
+case 'talk':
+startNpcDialogue();
+break;
+case 'drink':
+const wineGain = 5 + Math.floor(Math.random()*10);
+state.stats.wine = Math.min(100, state.stats.wine + wineGain);
+state.stats.inspiration = Math.min(100, state.stats.inspiration + Math.floor(wineGain/2));
+addLog(`小酌一杯，酒力+${wineGain}`);
+advanceTime();
+break;
+case 'qushui':
+startQushuiMini();
+break;
+case 'compose':
+if (state.stats.inspiration >= 70 && state.stats.calligraphy >= 50 && state.verses.length >= 8) {
+showAnalysisEnding(true);
+}
+break;
+}
+}
+function startNpcDialogue() {
+const sc = SCENES[state.scene];
+if (!sc || !sc.npcs || sc.npcs.length === 0) {
+addLog("此處四下無人，唯有清風扶柳。");
+return;
+}
+const unmet = sc.npcs.filter(id => !state.npcMet[id]);
+const nid = unmet.length ? unmet[0] : sc.npcs[Math.floor(Math.random() * sc.npcs.length)];
+const npc = NPCS[nid];
+if (!npc) {
+console.error("NPC missing:", nid);
+return;
+}
+const sceneDialogueObj = npc.sceneDialogues ? npc.sceneDialogues[state.scene] : null;
+const greeting = (sceneDialogueObj && sceneDialogueObj.greeting) ? sceneDialogueObj.greeting : npc.defaultGreeting;
+const dialogueOptions = (sceneDialogueObj && sceneDialogueObj.dialogues) ? sceneDialogueObj.dialogues : npc.defaultDialogues;
+state.npcMet[nid] = true;
+const choices = dialogueOptions.map(d => ({ text: d.player }));
+choices.push({ text: '失禮告退' });
+openModal(npc.portrait, `${npc.name} · ${npc.title}`, greeting, choices, (idx) => {
+if (idx === choices.length - 1) { closeGalModal(); return; }
+const selectedDialogue = dialogueOptions[idx];
+applyEffect(selectedDialogue.effect);
+if (npc.verses) {
+npc.verses.forEach(v => {
+if(!state.verses.includes(v)) {
+state.verses.push(v);
+addLog(`領悟名句：${v}`, 'gl');
+}
+});
+}
+openModal(npc.portrait, npc.name, selectedDialogue.npc, null, () => {
+addLog(`與【${npc.name}】深入清談`, 'hl');
+closeGalModal();
+advanceTime();
+});
+});
+}
+function startQushuiMini() {
+openModal(PORTRAITS.qushui, '曲水流觴', '清流之上，一只羽觴順流而下，正好停在你面前。眾人目光皆匯聚於此。', [
+{text: '取杯賦詩'},
+{text: '自罰三杯'},
+{text: '婉拒棄權'}
+], (idx) => {
+if (idx === 2) { closeGalModal(); return; }
+if (idx === 1) {
+state.stats.wine = Math.min(100, state.stats.wine + 20);
+addLog('曲水流觴：自罰三杯，酒力大增。');
+closeGalModal();
+advanceTime();
+return;
+}
+const success = Math.random() > 0.3;
+if (success) {
+applyEffect(`inspiration+15,poetry+10`);
+const locked = ALL_VERSES.filter(v => !state.verses.includes(v));
+if (locked.length) {
+const newVerse = locked[0];
+state.verses.push(newVerse);
+addLog(`賦得名句：${newVerse}`, 'gl');
+}
+addLog('曲水流觴：成功取杯賦詩，博得滿堂彩！', 'gl');
+} else {
+addLog('曲水流觴：提筆凝神，卻未能如願，頗為遺憾。');
+}
+closeGalModal();
+advanceTime();
+});
+}
+function showAnalysisEnding(success = false) {
+state.completed = true;
+const analysisSteps = [
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1c3d74d15-06f5-4d35-888a-0b6683fa7b99.png',
+name: success ? '🌟 千古絕唱 · 蘭亭集序' : '🍂 雅集散場',
+msg: success ?
+'【序文落成】你於酒酣耳熱之際，借蘭亭之氣，揮毫而就。\n「永和九年，歲在癸丑，暮春之初，會於會稽山陰之蘭亭，修禊事也。群賢畢至，少長咸集。此地有崇山峻嶺，茂林修竹，又有清流激湍，映帶左右，引以為流觴曲水，列坐其次。雖無絲竹管弦之盛，一觴一詠，亦足以暢敘幽情。」\n這篇三百二十四字的序文，不僅記述了今日盛況，更將成為書法史上不可逾越的高峰。千年之後，世人仍將為之傾倒。' :
+'酉時已過，夕陽西下。雅集雖散，但今日會稽山陰的微風、崇山峻嶺間的修竹與清談，已深深印入你的腦海。雖未能揮灑出傳世之作，但這份心境已是難得。人生如斯，不必強求，順其自然，亦是智慧。'
+},
+{
+portrait: 'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/1d5e02134-1258-43bd-800d-484aeef4c5f2.png',
+name: '📜 創作背景：永和九年',
+msg: '公元353年（晉穆帝永和九年）三月初三。王羲之邀約謝安、孫綽等42位文人雅士，於會稽山陰蘭亭舉行「修禊」之禮。\n眾人臨流而坐，流觴賦詩，匯集成冊。王羲之酒後微醺，感興而作，成就此千古奇書。據傳，羲之醒後屢次重寫，皆不及原作之妙——蓋因酒後真情流露，非刻意所能得也。'
+},
+{
+portrait: PORTRAITS.xiean,
+name: '💎 萬古傳承：神龍掠影',
+msg: '唐太宗李世民一生酷愛此帖，甚至傳言將其帶入昭陵陪葬。世間真跡雖失，但幸有「神龍本」等精妙摹本傳世，使今人仍能一窺王羲之那「龍跳天門，虎臥鳳閣」的絕世風采。\n千年流轉，《蘭亭集序》已不僅是一幅書法作品，更是中華文化之瑰寶，民族精神之象徵。每當世人展卷觀之，仍能感受那永和九年的春風，那蘭亭雅集的盛況。'
+}
+];
+let currentStep = 0;
+function runStep() {
+if (currentStep < analysisSteps.length) {
+const s = analysisSteps[currentStep];
+openModal(s.portrait, s.name, s.msg, null, () => {
+currentStep++;
+runStep();
+});
+} else {
+openModal(
+'https://image.qwenlm.ai/public_source/663a4992-351e-49d3-921e-fcb8249b995e/186d08f83-d4d2-47e4-98b8-f26e659c5d93.png',
+'完結 · 仰觀宇宙',
+'感謝參與本次蘭亭雅集。筆墨隨風，神韻長存。\n「後之視今，亦猶今之視昔。悲夫！」\n——王羲之《蘭亭集序》',
+[
+{text: '再續蘭亭緣'},
+{text: '退出雅集'}
+],
+(idx) => {
+if (idx === 0) location.reload();
+else closeGalModal();
+}
+);
+}
+}
+runStep();
+}
+$('#coverScreen').onclick = () => $('#coverScreen').style.display = 'none';
+$('#mapGrid').onclick = e => {
+if(state.completed) return;
+const cell = e.target.closest('.map-cell');
+if (cell && cell.dataset.scene) {
+state.scene = cell.dataset.scene;
+addLog(`移至【${SCENES[state.scene].name}】`);
+updateAll();
+}
+};
+$('#actionsRow').onclick = e => {
+const btn = e.target.closest('.act-btn');
+if (btn && !btn.disabled) handleAction(btn.dataset.action);
+};
+updateAll();
+addLog('雅集伊始，永和九年，歲在癸丑。請四處探索，領悟名句，提升靈感。');
+})();
+</script>
+</body></html>
